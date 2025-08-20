@@ -1,0 +1,36 @@
+name: Secret and Default Environment Variables
+
+on: 
+  push:
+
+jobs:
+  default_env_variables:
+    env : 
+      DEVOPS: DevOps is a culture
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test Secret variable
+        run: |
+          echo "$DEVOPS"
+          if [${{ secrets.SECRET_TOKEN }} == "Tavant_India"]
+          then 
+            echo "Got out Secret"
+          fi
+        env:
+          DEVOPS: ${{ secrets.SECRET_TOKEN }}
+     
+      - name: Print Environment Variables
+        run: |
+            echo "GITHUB_ACTION: $GITHUB_ACTION"
+            echo "HOME: $HOME"
+            echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
+            echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
+            echo "GITHUB_REF: $GITHUB_REF"
+            echo "GITHUB_SHA: $GITHUB_SHA"
+            echo "GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME"
+            echo "GITHUB_ACTOR: $GITHUB_ACTOR"
+            echo "GITHUB_EVENT_PATH: $GITHUB_EVENT_PATH"
+            echo "GITHUB_WORKFLOW: $GITHUB_WORKFLOW"
+            echo "GITHUB_RUN_ID: $GITHUB_RUN_ID"
+            echo "GITHUB_RUN_NUMBER: $GITHUB_RUN_NUMBER"
+            echo "RUNNER OS: $RUNNER_OS"
