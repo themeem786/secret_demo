@@ -1,0 +1,41 @@
+name : Context Testing
+
+on : push
+
+jobs :
+    dump_contexts_to_log :
+        runs-on : ubuntu-latest
+        steps :
+            - name : Dump Github Context
+              run : |
+                echo "GITHUB_CONTEXT: ${{ toJson(github) }}"
+            - name : Dump Job Context
+              run : |
+                echo "JOB_CONTEXT: ${{ toJson(job) }}"
+            - name : Dump Runner Context
+              run : |
+                echo "RUNNER_CONTEXT: ${{ toJson(runner) }}"
+            - name : Dump Steps Context
+              run : |
+                echo "STEPS_CONTEXT: ${{ toJson(steps) }}"
+            - name : Dump Inputs Context
+              run : |
+                echo "INPUTS_CONTEXT: ${{ toJson(inputs) }}"
+            - name : Dump Secrets Context
+              run : |
+                echo "SECRETS_CONTEXT: ${{ toJson(secrets) }}"
+            - name : Dump Environment Context
+              run : |
+                echo "ENV_CONTEXT: ${{ toJson(env) }}"
+            - name : Dump Matrix Context
+              run : |
+                echo "MATRIX_CONTEXT: ${{ toJson(matrix) }}"
+            - name : Dump Strategy Context
+              run : |
+                echo "STRATEGY_CONTEXT: ${{ toJson(strategy) }}"
+            - name : Dump Runner OS Context
+              run : |
+                    echo "RUNNER_OS_CONTEXT: ${{ toJson(runner.os) }}"
+            - name : Dump Runner Name Context
+              run : |
+                    echo "RUNNER_NAME_CONTEXT: ${{ toJson(runner.name) }}"
